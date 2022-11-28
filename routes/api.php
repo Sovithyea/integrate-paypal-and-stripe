@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\LinkController;
+use App\Http\Controllers\OrderController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +20,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::post('links', [LinkController::class, 'store']);
+Route::get('checkouts/{code}', [CheckoutController::class, 'show']);
+Route::post('orders', [OrderController::class, 'store']);
+Route::post('confirm-orders', [OrderController::class, 'confirmOrder']);
